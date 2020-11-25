@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "isolatedModules": true,
+    "baseUrl": ".",
+    "importHelpers": true
+  }
+}
