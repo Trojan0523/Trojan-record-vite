@@ -12,7 +12,7 @@ const router = createRouter({
     {path: '/money', component: Money, name: 'Money'},
     {path: '/labels', component: Labels, name: 'labels'},
     {path: '/statistics', component: Statistics, name: 'statistics'},
-    {path: '/:pathMatch(.*)*', component: NotFound}
+    {path: '/:pathMatch(.*)*', component: NotFound, name: 'NotFound'}
   ]
 })
 

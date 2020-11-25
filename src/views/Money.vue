@@ -1,10 +1,15 @@
 <template>
-  <div>这是一个记账页面</div>
+  <Layout class-prefix="layout">
+  </Layout>
 </template>
 
 <script lang="ts">
+import Layout from "../components/Layout.vue";
 export default {
   name: 'Money',
+  components: {
+    Layout,
+  }
 }
 </script>
 
