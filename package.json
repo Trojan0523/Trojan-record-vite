@@ -1,0 +1,20 @@
+{
+  "name": "trojan-record-vite",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "resolutions": {
+    "node-sass": "npm:sass@^1.26.11"
+  },
+  "dependencies": {
+    "vue": "^3.0.0-rc.1",
+    "vue-router": "4.0.0-beta.3"
+  },
+  "devDependencies": {
+    "vite": "^1.0.0-rc.1",
+    "sass": "^1.26.11",
+    "@vue/compiler-sfc": "^3.0.0-rc.1"
+  }
+}
