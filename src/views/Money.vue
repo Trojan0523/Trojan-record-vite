@@ -1,5 +1,6 @@
 <template>
   <Layout class-prefix="layout">
+    <div>这是一个记账页面</div>
   </Layout>
 </template>
 

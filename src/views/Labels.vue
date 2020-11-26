@@ -1,5 +1,8 @@
 <template>
-  <div>这是一个标签页</div>
+  <Layout class-prefix="layout">
+    <div>这是一个标签页</div>
+  </Layout>
+
 </template>
 
 <script lang="ts">
