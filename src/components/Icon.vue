@@ -1,10 +1,12 @@
 <template>
   <svg class="icon" aria-hidden="true" @click="$emit('click', $event)">
-    <use xlink:href="'#icon-' + name"></use>
+    <use :xlink:href="'#icon-' + name"/>
   </svg>
 </template>
 
 <script lang="ts">
+import '../assets/icons/iconfont.js';
+import '../assets/icons/iconfont.css';
 export default {
   name: 'Icon',
   props: ['name'],

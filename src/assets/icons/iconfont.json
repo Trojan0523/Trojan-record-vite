@@ -1,0 +1,44 @@
+{
+  "id": "2229501",
+  "name": "trojan-record",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "2518129",
+      "name": "left",
+      "font_class": "left",
+      "unicode": "e656",
+      "unicode_decimal": 58966
+    },
+    {
+      "icon_id": "1684765",
+      "name": "label",
+      "font_class": "label",
+      "unicode": "e626",
+      "unicode_decimal": 58918
+    },
+    {
+      "icon_id": "11591352",
+      "name": "money new",
+      "font_class": "money",
+      "unicode": "e651",
+      "unicode_decimal": 58961
+    },
+    {
+      "icon_id": "16859986",
+      "name": "right",
+      "font_class": "right",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "18415965",
+      "name": "icon_Report statistics",
+      "font_class": "statistics",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    }
+  ]
+}
