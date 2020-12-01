@@ -5,10 +5,11 @@
 </template>
 
 <script lang="ts">
-
-export default {
+import {defineComponent} from 'vue';
+export default defineComponent({
+  // 已启用类型推断
   name: 'App',
-}
+})
 </script>
 
 <style lang="scss">
