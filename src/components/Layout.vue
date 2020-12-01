@@ -8,13 +8,14 @@
 </template>
 
 <script lang="ts">
-export default {
+import {defineComponent} from 'vue';
+export default defineComponent({
   name: 'Layout',
   props: ['classPrefix'],
-};
+});
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .layout-wrapper {
   display: flex;
   flex-direction: column;
