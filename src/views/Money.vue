@@ -9,7 +9,6 @@
 </template>
 
 <script lang="ts">
-import Layout from "../components/Layout.vue";
 import Button from "../components/Button.vue";
 import NumberPad from "../components/Money/NumberPad.vue";
 import Tabs from "../components/Tabs.vue";
@@ -22,7 +21,6 @@ type RecordItem = {
 export default {
   name: 'Money',
   components: {
-    Layout,
     Button,
     NumberPad,
     Tabs,

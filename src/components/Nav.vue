@@ -16,13 +16,10 @@
 </template>
 
 <script lang="ts">
-import Icon from "./Icon.vue";
 
 export default {
   name: 'Nav',
-  components: {
-    Icon,
-  }
+
 }
 </script>
 
