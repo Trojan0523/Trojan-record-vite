@@ -1,24 +1,21 @@
 <template>
   <Layout class-prefix="layout">
     <NumberPad/>
-    <div>tags</div>
+    <Tabs :dataSource="RecordTypeList"/>
     <div>
       FromItem
       <label for="xxx">
         <input id="xxx" type="text">
       </label>
     </div>
-    <Button>衣</Button>
-    <Button>食</Button>
-    <Button>住</Button>
-    <Button>行</Button>
   </Layout>
 </template>
 
 <script lang="ts">
 import Layout from "../components/Layout.vue";
 import Button from "../components/Button.vue";
-import NumberPad from "./Money/NumberPad.vue";
+import NumberPad from "../components/Money/NumberPad.vue";
+import Tabs from "../components/Tabs.vue";
 
 type RecordItem = {
   amount: number;
@@ -30,7 +27,13 @@ export default {
     Layout,
     Button,
     NumberPad,
+    Tabs,
+  },
+  setup() {
+
+    return {}
   }
+
 }
 </script>
 

@@ -75,8 +75,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "src/assets/style/helper.scss";
-$bg: #fdbb2d;
+@import "../../assets/style/helper";
+$bg: #94bbe9;
 
 .numberPad {
   .output {
@@ -91,7 +91,8 @@ $bg: #fdbb2d;
 
   .buttons {
     @extend %clearFix;
-
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
     > button {
       width: 25%;
       height: 64px;
