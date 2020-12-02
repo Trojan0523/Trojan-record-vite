@@ -1,7 +1,7 @@
 <template>
   <Layout class-prefix="layout">
     <NumberPad/>
-    <Tabs :dataSource="RecordTypeList"/>
+    <Tabs :dataSource="RecordTypeList" :value.sync="record.type"/>
     <div class="notes">
       <FormItem />
     </div>
@@ -10,30 +10,45 @@
 </template>
 
 <script lang="ts">
-import Button from "../components/Button.vue";
 import NumberPad from "../components/Money/NumberPad.vue";
-import Tabs from "../components/Tabs.vue";
 import FormItem from "../components/Money/FormItem.vue";
+import Tabs from "../components/Tabs.vue";
 import Tags from "../components/Money/Tags.vue";
-type RecordItem = {
-  amount: number;
-}
+import {defineComponent} from 'vue';
+import RecordTypeList from "../constants/RecordTypeList";
 
-export default {
+
+
+export default defineComponent( {
   name: 'Money',
   components: {
-    Button,
     NumberPad,
     Tabs,
     FormItem,
     Tags
   },
-  setup() {
 
+  data() {
+    return {
+      record: {
+        tags: [], notes: '', type: '-', amount: 0, createdAt: new Date().toISOString()
+      } as RecordItem,
+      RecordTypeList
+    }
+  },
+
+  emits: {
+    'update:value': value => {
+      console.log(value);
+      return true;
+    }
+  },
+
+  setup(props, context) {
     return {}
   }
 
-}
+})
 </script>
 
 <style lang="scss" scoped>

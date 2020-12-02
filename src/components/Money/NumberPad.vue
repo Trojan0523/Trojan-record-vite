@@ -32,7 +32,7 @@ export default defineComponent({
       default: '0',
     }
   },
-  setup(props) {
+  setup(props, context) {
     // props 是响应式的，不能用ES6进行解构，否则会消除prop的响应性
     // 写法1 ： 引入toRefs,使用{prop} = toRefs(props);
     // 写法2 ： 传入的props直接点props后面的变量 props.prop
@@ -65,8 +65,8 @@ export default defineComponent({
     }
     const ok  = () => {
       const number = parseFloat(props.output);
-      props.$emit('update:value', number);
-      props.$emit('sumbit', number);
+      context.$emit('update:value', number);
+      context.$emit('sumbit', number);
       props.output = '0'
     }
     return {inputContent, remove, clear, ok}
