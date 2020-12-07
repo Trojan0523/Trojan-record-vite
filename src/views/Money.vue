@@ -1,11 +1,11 @@
 <template>
   <Layout class-prefix="layout">
-    <NumberPad/>
-    <Tabs :dataSource="RecordTypeList" v-model:value="record.type"/>
+    <NumberPad v-model:value="record.amount" @submit="saveRecord"/>
+    <Tabs v-model:value="record.type" :dataSource="RecordTypeList"/>
     <div class="notes">
-      <FormItem />
+      <FormItem/>
     </div>
-    <Tags />
+    <Tags/>
   </Layout>
 </template>
 
@@ -17,7 +17,7 @@ import Tags from "../components/Money/Tags.vue";
 import {defineComponent} from 'vue';
 import RecordTypeList from "../constants/RecordTypeList";
 
-export default defineComponent( {
+export default defineComponent({
   name: 'Money',
   components: {
     NumberPad,
@@ -36,7 +36,9 @@ export default defineComponent( {
   },
 
   setup(props, context) {
-    return {}
+    const saveRecord = () => {
+    }
+    return {saveRecord}
   }
 
 })

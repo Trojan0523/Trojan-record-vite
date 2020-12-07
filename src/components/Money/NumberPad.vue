@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts">
-// import {toRefs} from 'vue'
+import {ref} from 'vue';
 import {defineComponent} from 'vue';
 
 export default defineComponent({
@@ -33,6 +33,7 @@ export default defineComponent({
     }
   },
   setup(props, context) {
+    const output = ref(props.output);
     // props 是响应式的，不能用ES6进行解构，否则会消除prop的响应性
     // 写法1 ： 引入toRefs,使用{prop} = toRefs(props);
     // 写法2 ： 传入的props直接点props后面的变量 props.prop
@@ -40,36 +41,36 @@ export default defineComponent({
     const inputContent = (event: MouseEvent) => {
       const button = (event.target as HTMLButtonElement);
       const input = button.textContent as string;
-      if (props.output.length === 16) return;
-      if (props.output === '0') {
+      if (output.value.length === 16) return;
+      if (output.value === '0') {
         if ('0123456789'.indexOf(input) >= 0) {
-          props.output = input;
+          output.value = input;
         } else {
-          props.output += input
+          output.value += input;
         }
         return;
       }
-      if (props.output.indexOf('.') >= 0 && input === '.') return;
-      props.output += input;
+      if (output.value.indexOf('.') >= 0 && input === '.') return;
+      output.value += input;
     }
     const remove = () => {
-      const x = props.output.substring(0, props.output.length - 1);
-      if (props.output.length === 1) {
-        props.output = '0'
+      const removeNumberLastIndex = output.value.substring(0, output.value.length - 1);
+      if (output.value.length === 1) {
+        output.value = '0'
       } else {
-        props.output = x;
+        output.value = removeNumberLastIndex;
       }
     }
     const clear = () => {
-      props.output = '0'
+      output.value = '0'
     }
     const ok  = () => {
-      const number = parseFloat(props.output);
-      context.$emit('update:value', number);
-      context.$emit('sumbit', number);
-      props.output = '0'
+      const number = parseFloat(output.value);
+      context.emit('update:value', number);
+      context.emit('submit', number);
+      output.value = '0'
     }
-    return {inputContent, remove, clear, ok}
+    return {inputContent, remove, clear, ok, output}
   }
 })
 </script>
