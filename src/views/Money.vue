@@ -1,7 +1,7 @@
 <template>
   <Layout class-prefix="layout">
     <NumberPad/>
-    <Tabs :dataSource="RecordTypeList" :value.sync="record.type"/>
+    <Tabs :dataSource="RecordTypeList" v-model:value="record.type"/>
     <div class="notes">
       <FormItem />
     </div>
@@ -16,8 +16,6 @@ import Tabs from "../components/Tabs.vue";
 import Tags from "../components/Money/Tags.vue";
 import {defineComponent} from 'vue';
 import RecordTypeList from "../constants/RecordTypeList";
-
-
 
 export default defineComponent( {
   name: 'Money',
@@ -34,13 +32,6 @@ export default defineComponent( {
         tags: [], notes: '', type: '-', amount: 0, createdAt: new Date().toISOString()
       } as RecordItem,
       RecordTypeList
-    }
-  },
-
-  emits: {
-    'update:value': value => {
-      console.log(value);
-      return true;
     }
   },
 
