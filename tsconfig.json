@@ -5,6 +5,7 @@
     "jsx": "preserve",
     "moduleResolution": "Node",
     "strict": true,
-    "declarationMap": true
+    "declarationMap": true,
+    "allowSyntheticDefaultImports": true
   }
 }

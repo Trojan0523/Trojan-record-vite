@@ -3,7 +3,14 @@
     <NumberPad v-model:value="record.amount" @submit="saveRecord"/>
     <Tabs v-model:value="record.type" :dataSource="RecordTypeList"/>
     <div class="notes">
-      <FormItem/>
+      <FormItem field-name="备注"
+                placeholder="在这里输入备注"
+                v-model:value="record.notes"
+                type="text"/>
+      <FormItem field-name="日期"
+                placeholder="在这里输入日期"
+                v-model:value="record.createdAt"
+                type="date"/>
     </div>
     <Tags/>
   </Layout>
@@ -25,7 +32,6 @@ export default defineComponent({
     FormItem,
     Tags
   },
-
   data() {
     return {
       record: {
@@ -34,13 +40,11 @@ export default defineComponent({
       RecordTypeList
     }
   },
-
   setup(props, context) {
     const saveRecord = () => {
     }
     return {saveRecord}
-  }
-
+  },
 })
 </script>
 
