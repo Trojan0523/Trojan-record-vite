@@ -23,7 +23,6 @@ import Tabs from "../components/Tabs.vue";
 import Tags from "../components/Money/Tags.vue";
 import {defineComponent} from 'vue';
 import RecordTypeList from "../constants/RecordTypeList";
-
 export default defineComponent({
   name: 'Money',
   components: {
