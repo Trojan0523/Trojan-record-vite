@@ -4,19 +4,40 @@
       <button @click="createTag">新增标签</button>
     </div>
     <ul class="current">
-      <li>衣</li>
-      <li>食</li>
-      <li>住</li>
-      <li>行</li>
+      <li v-for="tag in tagList" :key="tag.id" @click="toggle(tag)"
+          :class="{selected: selectedTags.indexOf(tag)>=0}">{{ tag.name }}
+      </li>
     </ul>
   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-
+import useTagHelper from "../../hooks/useTagHelper";
 export default defineComponent({
   name: 'Tags',
+  props: {
+    selectedTags: {
+      type: Array as PropType<string[]>,
+    }
+  },
+  setup(props, context) {
+    const toggle = (tag: string) => {
+      const index = props.selectedTags.indexOf(tag);
+      if (index >= 0) {
+        props.selectedTags.splice(index, 1);
+      } else {
+        props.selectedTags.push(tag);
+      }
+      context.emit('update:value', props.selectedTags);
+    }
+    const tagList = () => {
+      // return Reflect.get(this.$store.state.tagList);
+    }
+    const {createTag} = useTagHelper();
+    // this.$store.commit('fetchTags');
+    return {toggle, tagList, createTag}
+  },
 
 })
 </script>
@@ -55,8 +76,10 @@ $h: 24px;
       }
     }
   }
+
   > .new {
     padding-top: 16px;
+
     button {
       background: transparent;
       border: none;
