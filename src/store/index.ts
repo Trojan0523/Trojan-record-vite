@@ -11,6 +11,9 @@ export const store = createStore({
   } as RootState,
 
   mutations: {
+    setCurrentTag(state, id: string) {
+      state.currentTag = state.tagList.filter(t => t.id === id)[0];
+    },
     fetchRecords(state) {
       state.recordList = JSON.parse(window.localStorage.getItem('recordList') || '[]') as RecordItem[];
     },
@@ -52,9 +55,10 @@ export const store = createStore({
     },
     removeTag(state, id: string) {
       let index = -1;
-      for (let i = 0; i > state.tagList.length; i++) {
+      for (let i = 0; i < state.tagList.length; i++) {
         if(state.tagList[i].id === id) {
-          index = 1;
+          index = i;
+          console.log(index);
           break;
         }
       }
