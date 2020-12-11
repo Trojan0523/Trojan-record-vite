@@ -18,7 +18,7 @@ export default defineComponent({
   color: whitesmoke;
   border-radius: 4px;
   border: none;
-  height: 48px;
+  height: 40px;
   padding: 0 16px 0 16px;
 
   &-wrapper {
