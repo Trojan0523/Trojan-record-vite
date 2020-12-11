@@ -21,7 +21,7 @@ import NumberPad from "../components/Money/NumberPad.vue";
 import FormItem from "../components/Money/FormItem.vue";
 import Tabs from "../components/Tabs.vue";
 import Tags from "../components/Money/Tags.vue";
-import {defineComponent} from 'vue';
+import {defineComponent, reactive} from 'vue';
 import RecordTypeList from "../constants/RecordTypeList";
 import {useStore} from "vuex";
 export default defineComponent({
@@ -37,15 +37,29 @@ export default defineComponent({
       record: {
         tags: [], notes: '', type: '-', amount: 0, createdAt: new Date().toISOString()
       } as RecordItem,
-      RecordTypeList: RecordTypeList,
+      RecordTypeList,
     }
   },
   setup() {
     const store = useStore();
-    const saveRecord = () => {
-    }
+    const record = reactive({
+      tags: [], notes: '', type: '-', amount: 0, createdAt: new Date().toISOString()
+    })
     store.commit('fetchRecords')
-    return {saveRecord}
+    const onUpdateNotes = (value: string) => {
+      record.notes = value;
+    }
+    const saveRecord = () => {
+      if(!record.tags || record.tags.length === 0) {
+        return window.alert('请至少选择一个标签');
+      }
+      store.commit('createRecord', record);
+      if(store.state.createRecordError === null) {
+        window.alert('已保存');
+        record.notes = '';
+      }
+    }
+    return {saveRecord, onUpdateNotes, record}
   },
 })
 </script>

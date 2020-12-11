@@ -1,6 +1,6 @@
 import {createStore} from 'vuex';
 import createId from "../lib/createId";
-
+import clone from '../lib/clone';
 
 export const store = createStore({
   state: {
@@ -11,8 +11,14 @@ export const store = createStore({
   } as RootState,
 
   mutations: {
-    setCurrentTag(state, id: string) {
-      state.currentTag = state.tagList.filter(t => t.id === id)[0];
+    createRecord(state, record: RecordItem) {
+      const recordCopy = clone(record);
+      recordCopy.createdAt = recordCopy.createdAt || new Date().toISOString();
+      state.recordList.push(recordCopy);
+      store.commit('saveRecords');
+    },
+    saveRecords(state) {
+      window.localStorage.setItem('recordList', JSON.stringify(state.recordList));
     },
     fetchRecords(state) {
       state.recordList = JSON.parse(window.localStorage.getItem('recordList') || '[]') as RecordItem[];
@@ -25,6 +31,9 @@ export const store = createStore({
         store.commit('createTag','住');
         store.commit('createTag','行');
       }
+    },
+    setCurrentTag(state, id: string) {
+      state.currentTag = state.tagList.filter(t => t.id === id)[0];
     },
     createTag(state, name: string) {
       const names = state.tagList.map(item => item.name);

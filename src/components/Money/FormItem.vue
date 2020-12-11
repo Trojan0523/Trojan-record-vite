@@ -5,8 +5,8 @@
       <template v-if="type === 'date'">
         <input :placeholder="placeholder"
                :type="type || 'date'"
-               @input="formatTime($event.target.value)"
-               :value="value">
+               @input="onValueChanged($event.target.value)"
+               :value="formatTime(value)">
       </template>
       <template v-else>
         <input :placeholder="placeholder"
@@ -46,7 +46,7 @@ export default defineComponent({
       context.emit('update:value', value);
     }
     const formatTime = (isoString: string) => {
-      return dayjs(isoString).format('YYYY-MM-dd');
+      return dayjs(isoString).format('YYYY-MM-DD');
     }
     return {onValueChanged, formatTime}
   }
