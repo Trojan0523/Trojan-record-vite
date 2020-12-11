@@ -23,6 +23,7 @@ import Tabs from "../components/Tabs.vue";
 import Tags from "../components/Money/Tags.vue";
 import {defineComponent} from 'vue';
 import RecordTypeList from "../constants/RecordTypeList";
+import {store} from "../store";
 export default defineComponent({
   name: 'Money',
   components: {
@@ -36,12 +37,13 @@ export default defineComponent({
       record: {
         tags: [], notes: '', type: '-', amount: 0, createdAt: new Date().toISOString()
       } as RecordItem,
-      RecordTypeList
+      RecordTypeList: RecordTypeList,
     }
   },
   setup(props, context) {
     const saveRecord = () => {
     }
+    store.commit('fetchRecords')
     return {saveRecord}
   },
 })

@@ -46,7 +46,7 @@ export default defineComponent({
       context.emit('update:value', value);
     }
     const formatTime = (isoString: string) => {
-      return dayjs(isoString).format('YYYY-MM-DD');
+      return dayjs(isoString).format('YYYY-MM-dd');
     }
     return {onValueChanged, formatTime}
   }

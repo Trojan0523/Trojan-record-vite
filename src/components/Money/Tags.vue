@@ -12,13 +12,16 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {defineComponent, computed} from 'vue';
 import useTagHelper from "../../hooks/useTagHelper";
+import {store} from "../../store";
+
 export default defineComponent({
   name: 'Tags',
   props: {
     selectedTags: {
       type: Array as PropType<string[]>,
+      default: [],
     }
   },
   setup(props, context) {
@@ -31,14 +34,14 @@ export default defineComponent({
       }
       context.emit('update:value', props.selectedTags);
     }
-    const tagList = () => {
-      // return Reflect.get(this.$store.state.tagList);
-    }
-    const {createTag} = useTagHelper();
-    // this.$store.commit('fetchTags');
-    return {toggle, tagList, createTag}
-  },
 
+    const tagList = computed(() => {
+      return store.state.tagList;
+    })
+    const {createTag} = useTagHelper();
+    store.commit('fetchTags');
+    return {toggle, createTag, tagList}
+  },
 })
 </script>
 
