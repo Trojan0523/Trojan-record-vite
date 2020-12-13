@@ -37,18 +37,18 @@ export default defineComponent({
     })
     store.commit('fetchTags');
     store.commit('setCurrentTag', id);
-    if (!currentTag) {
+    if (!currentTag.value) {
       router.replace('/:pathMatch(.*)*');
     }
     const update = (name: string) => {
       console.log(name);
-      if (currentTag) {
-        store.commit('updateTag', {id: currentTag.id, name})
+      if (currentTag.value) {
+        store.commit('updateTag', {id: currentTag.value.id, name})
       }
     }
     const remove = () => {
       if (currentTag) {
-        store.commit('removeTag', currentTag.id)
+        store.commit('removeTag', currentTag.value.id)
         goBack();
       }
     }

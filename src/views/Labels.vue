@@ -19,10 +19,10 @@
 
 <script lang="ts">
 import useTagHelper from "../hooks/useTagHelper";
-import {computed} from 'vue';
+import {computed, defineComponent} from 'vue';
 import {store} from "../store";
 
-export default {
+export default defineComponent({
   name: 'Labels',
   setup() {
     const {createTag} = useTagHelper();
@@ -32,7 +32,7 @@ export default {
     store.commit('fetchTags');
     return {createTag, tags}
   },
-}
+})
 </script>
 
 <style lang="scss" scoped>
