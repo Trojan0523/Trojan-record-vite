@@ -9,7 +9,7 @@
       <FormItem field-name="标签名"
                 placeholder="请输入标签名"
                 :value="currentTag.name"
-                v-model:value="update"></FormItem>
+                @update:value="update"></FormItem>
     </div>
     <div class="button-wrapper">
       <Button @click="remove">删除标签</Button>
@@ -47,7 +47,7 @@ export default defineComponent({
       }
     }
     const remove = () => {
-      if (currentTag) {
+      if (currentTag.value) {
         store.commit('removeTag', currentTag.value.id)
         goBack();
       }
