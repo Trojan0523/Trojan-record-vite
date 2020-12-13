@@ -12,7 +12,7 @@
                 v-model:value="record.createdAt"
                 type="date"/>
     </div>
-    <Tags @update:value="record.tags = $event"/>
+    <Tags v-model:value="record.tags"/>
   </Layout>
 </template>
 
@@ -66,8 +66,8 @@ export default defineComponent({
   display: flex;
   flex-direction: column-reverse;
 }
-
 .notes {
   padding: 12px 0;
 }
+
 </style>

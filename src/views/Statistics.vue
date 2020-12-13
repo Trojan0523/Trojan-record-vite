@@ -53,6 +53,10 @@ export default defineComponent({
       const now = dayjs();
       if (day.isSame(now, 'day')) {
         return '今天';
+      } else if (day.isSame(now.add(1, 'day'), 'day')) {
+        return '明天';
+      } else if (day.isSame(now.add(2, 'day'), 'day')) {
+        return '后天';
       } else if (day.isSame(now.subtract(1, 'day'), 'day')) {
         return '昨天';
       } else if (day.isSame(now.subtract(2, 'day'), 'day')) {
@@ -145,10 +149,12 @@ export default defineComponent({
   margin-left: 16px;
   color: #999;
 }
+
 .record {
   @extend %item;
   background: white;
 }
+
 .chart {
   width: 430%;
 

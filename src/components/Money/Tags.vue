@@ -14,7 +14,7 @@
 <script lang="ts">
 import {defineComponent, computed, PropType} from 'vue';
 import useTagHelper from "../../hooks/useTagHelper";
-import {store} from "../../store";
+import {useStore} from "vuex";
 
 export default defineComponent({
   name: 'Tags',
@@ -25,6 +25,10 @@ export default defineComponent({
     }
   },
   setup(props, context) {
+    const store = useStore();
+    const {createTag} = useTagHelper();
+    // 点击触发标签样式变化，选中标签加一
+    // TODO: bug:不可取消选中和选择多个(just style)
     const toggle = (tag: string) => {
       const index = props.selectedTags.indexOf(tag);
       if (index >= 0) {
@@ -33,12 +37,11 @@ export default defineComponent({
         props.selectedTags.push(tag);
       }
       context.emit('update:value', props.selectedTags);
+      console.log(props.selectedTags);
     }
-
     const tagList = computed(() => {
       return store.state.tagList;
     })
-    const {createTag} = useTagHelper();
     store.commit('fetchTags');
     return {toggle, createTag, tagList}
   },
