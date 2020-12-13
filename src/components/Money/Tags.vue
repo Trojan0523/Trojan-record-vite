@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, computed} from 'vue';
+import {defineComponent, computed, PropType} from 'vue';
 import useTagHelper from "../../hooks/useTagHelper";
 import {store} from "../../store";
 

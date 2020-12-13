@@ -34,9 +34,6 @@ export default defineComponent({
   },
   data() {
     return {
-      record: {
-        tags: [], notes: '', type: '-', amount: 0, createdAt: new Date().toISOString()
-      } as RecordItem,
       RecordTypeList,
     }
   },
