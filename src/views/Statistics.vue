@@ -2,8 +2,9 @@
   <div>
     <Layout>
       <Tabs class-prefix="type" :data-source="RecordTypeList" v-model:value="type"/>
-      <!--    <div class="chart-wrapper" ref="chartWrapper"></div>-->
-      <!--    <ol v-if="groupList.length > 0">-->
+          <div class="chart-wrapper" ref="chartWrapper">
+            <Chart class="chart" :options="chartOptions"/>
+          </div>
       <ol v-if="groupList.length > 0">
         <li v-for="(group, index) in groupList" :key="index">
           <h3 class="title">
@@ -33,11 +34,13 @@ import Tabs from "../components/Tabs.vue";
 import RecordTypeList from '../constants/RecordTypeList';
 import dayjs from "dayjs";
 import clone from "../lib/clone";
-
+import Chart from "../components/Chart.vue";
+import { find } from 'underscore';
 export default defineComponent({
   name: 'Statistics',
   components: {
     Tabs,
+    Chart
   },
   data() {
     return {
@@ -47,6 +50,7 @@ export default defineComponent({
   setup() {
     const store = useStore();
     const type = ref('-');
+    const chartWrapper = ref(null);
     store.commit('fetchRecords');
     const beautify = (title: string): string => {
       const day = dayjs(title);
@@ -90,17 +94,75 @@ export default defineComponent({
         }
       }
       result.map(group => {
-        group.total = group.items.reduce((sum, item) => sum + item.amount, 0);
+        group.total = group.items.reduce((sum, item) => {
+          return  sum + item.amount;
+        }, 0);
       });
       return result;
     })
+    const keyValueList = computed(() => {
+      const today = new Date();
+      const array = [];
+      for (let i = 0; i <= 29; i++) {
+        const dateString = dayjs(today).subtract(i, 'day').format('YYYY-MM-DD');
+        const found = find(groupList.value, {title: dateString});
+        array.push({key: dateString, value: found ? found.total: 0});
+      }
+      array.sort((a,b) => {
+         if(a.key > b.key) {
+           return 1;
+         } else if(a.key === b.key) {
+           return 0;
+         } else {
+           return -1;
+         }
+      });
+      return array;
+    })
+    const chartOptions = computed(() =>{
+      const keys = keyValueList.value.map(item => item.key);
+      const values = keyValueList.value.map(item => item.value);
+      return {
+        grid: {
+          left: 0,
+          right: 0
+        },
+        xAxis: {
+          type: 'category',
+          data: keys,
+          axisTick: {alignWithLabel: true},
+          axisLine: {lineStyle: {color: '#666'}},
+          axisLabel: {
+            formatter: function (value: string){
+              return value.substr(5);
+            }
+          }
+        },
+        yAxis: {
+          type: 'value',
+          show: false
+        },
+        series: [{
+          symbol: 'circle',
+          symbolSize: 12,
+          itemStyle: {borderWidth: 1, color: '#666', borderColor: '#666'},
+          data: values,
+          type: 'line'
+        }],
+        tooltip: {
+          show: true,
+          triggerOn: 'click',
+          position: 'top',
+          formatter: '{c}'
+        }
+      };
+    })
     onMounted(() => {
-      console.log('Component is mounted!')
-      // const div = (refs.chartWrapper as HTMLDviElement);
-      // div.scrollLeft = div.scrollWidth;
+      const div = (chartWrapper.value as HTMLDviElement);
+      div.scrollLeft = div.scrollWidth;
     })
 
-    return {beautify, tagString, recordList, groupList, type}
+    return {beautify, tagString, recordList, groupList, type, chartWrapper, keyValueList, chartOptions}
   }
 })
 </script>
