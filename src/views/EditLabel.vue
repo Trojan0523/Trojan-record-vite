@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, computed,} from 'vue';
+import {defineComponent, computed} from 'vue';
 import FormItem from "../components/Money/FormItem.vue";
 import {useStore} from 'vuex';
 import {useRoute, useRouter} from "vue-router";
