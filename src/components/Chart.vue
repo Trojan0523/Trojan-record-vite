@@ -7,7 +7,7 @@ import {defineComponent, onMounted, ref, watch,} from 'vue';
 export default defineComponent({
   props: {
     chart : {
-      type: echarts,
+      type: echarts | undefined,
     },
     options: {
       type: echarts.EChartOption,

@@ -7,14 +7,15 @@ import EditLabel from "../views/EditLabel.vue";
 
 
 const router = createRouter({
-  history: createWebHistory(),
+  // base url for deploying website(program name)
+  history: createWebHistory('/record_preview/'),
   routes: [
     {path: '/', redirect: {name: 'Money'}},
     {path: '/money', component: Money, name: 'Money'},
-    {path: '/labels', component: Labels, name: 'labels', children: []},
+    {path: '/labels', component: Labels, name: 'labels'},
     {path: '/labels/edit/:id', component: EditLabel},
     {path: '/statistics', component: Statistics, name: 'statistics'},
-    {path: '/:pathMatch(.*)*', component: NotFound, name: 'NotFound'}
+    {path: '/:pathMatch(.*)', component: NotFound, name: 'NotFound'}
   ]
 })
 
