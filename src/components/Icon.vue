@@ -10,6 +10,7 @@ import '../assets/icons/iconfont.css';
 export default {
   name: 'Icon',
   props: ['name'],
+  emits: ['click'],
 }
 </script>
 

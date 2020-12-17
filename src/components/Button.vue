@@ -1,5 +1,5 @@
 <template>
-  <button class="button">
+  <button class="button" @click="$emit('click', $event)">
     <slot/>
   </button>
 </template>
@@ -9,6 +9,7 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'Button',
+  emits: ['click'],
 })
 </script>
 
